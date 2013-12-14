@@ -1,4 +1,4 @@
-module Vertx
+class Vertx
   class Buffer
   end
 end
