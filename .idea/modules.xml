@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/mod-lang-jruby-native.iml" filepath="$PROJECT_DIR$/mod-lang-jruby-native.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/mod-lang-jruby-native.iml" filepath="$PROJECT_DIR$/java/mod-lang-jruby-native.iml" />
     </modules>
   </component>
 </project>

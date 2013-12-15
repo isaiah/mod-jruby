@@ -40,6 +40,14 @@ public class RubyBuffer extends RubyObject {
         super(ruby, rubyClass);
     }
 
+    public void setBuffer(Buffer buff) {
+        this.buffer = buff;
+    }
+
+    public Buffer getBuffer() {
+        return this.buffer;
+    }
+
     @JRubyMethod(name="initialize", visibility = PRIVATE)
     public IRubyObject initialize(ThreadContext context, IRubyObject initialSizeHint) {
         this.buffer = new Buffer(RubyNumeric.num2int(initialSizeHint));
