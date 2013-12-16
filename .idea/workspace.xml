@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="064cbdab-bba4-4d37-8547-3963aa1d2aee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerFileUpload.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyRouteMatcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyServerWebsocket.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyWebSocket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyBuffer.java" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyBuffer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java" afterPath="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mod-lang-jruby-native.iws" />
@@ -78,19 +68,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RubyBuffer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyBuffer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="27" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="4608">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RubyHttpServer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="24" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="2250">
+            <state line="17" column="13" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1908">
               <folding />
             </state>
           </provider>
@@ -99,18 +80,35 @@
       <file leaf-file-name="RubyServerWebsocket.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyServerWebsocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="62" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="774">
+            <state line="14" column="62" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="774">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RubyEventBus.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RubyEventBus.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="64" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.65415984" vertical-offset="301" max-vertical-offset="1008">
+            <state line="63" column="95" selection-start="2121" selection-end="2607" vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="1908">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3792#4237#0" expanded="true" />
+                <element signature="e#4226#4227#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RubyMessage.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="19" selection-start="2211" selection-end="2211" vertical-scroll-proportion="1.908646" vertical-offset="0" max-vertical-offset="1458">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#725#925#0" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1192#1193#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,7 +135,7 @@
       <file leaf-file-name="RubyHttpServerRequest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="37" selection-start="5025" selection-end="5025" vertical-scroll-proportion="0.0" vertical-offset="2168" max-vertical-offset="2808">
+            <state line="138" column="37" selection-start="5025" selection-end="5025" vertical-scroll-proportion="0.0" vertical-offset="2484" max-vertical-offset="2808">
               <folding />
             </state>
           </provider>
@@ -199,6 +197,7 @@
         <option value="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyWebSocket.java" />
         <option value="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyServerWebsocket.java" />
         <option value="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java" />
+        <option value="$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyMessage.java" />
       </list>
     </option>
   </component>
@@ -218,7 +217,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -390,6 +389,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -415,19 +427,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -529,6 +528,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962587" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -540,9 +540,8 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -582,6 +581,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyServerWebsocket.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="62" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="64" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1008">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3792#4237#0" expanded="true" />
+            <element signature="e#4226#4227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/java/platform/impl/JRubyVerticleFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="13" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="3942">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyWebSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="21" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="648">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="37" selection-start="5025" selection-end="5025" vertical-scroll-proportion="0.0" vertical-offset="2484" max-vertical-offset="2808">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerFileUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="15" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="40" selection-start="4525" selection-end="4525" vertical-scroll-proportion="0.0" vertical-offset="1808" max-vertical-offset="2430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyRouteMatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="27" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4608">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="24" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="2250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyServerWebsocket.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="62" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="774">
           <folding />
         </state>
@@ -592,6 +665,8 @@
         <state line="38" column="34" selection-start="1387" selection-end="1387" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="954">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3792#4237#0" expanded="true" />
+            <element signature="e#4226#4227#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -679,13 +754,6 @@
         <state line="4" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.25441697" vertical-offset="0" max-vertical-offset="283" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="24" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServerFileUpload.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="15" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="774">
@@ -742,11 +810,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyHttpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1908">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyEventBus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="64" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.65415984" vertical-offset="301" max-vertical-offset="1008">
+        <state line="63" column="95" selection-start="2121" selection-end="2607" vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="1908">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3792#4237#0" expanded="true" />
+            <element signature="e#4226#4227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/org/vertx/jruby/api_shim/core/RubyMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="19" selection-start="2211" selection-end="2211" vertical-scroll-proportion="1.908646" vertical-offset="0" max-vertical-offset="1458">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#725#925#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1192#1193#0" expanded="true" />
           </folding>
         </state>
       </provider>
