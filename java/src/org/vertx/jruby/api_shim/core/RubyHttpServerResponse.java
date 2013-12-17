@@ -91,13 +91,13 @@ public class RubyHttpServerResponse extends RubyObject {
         return this;
     }
 
-    @JRubyMethod(name="write_str", required=1, optional=1, rest=true)
+    @JRubyMethod(name="write_str", required=1, optional=1)
     public IRubyObject writeString(ThreadContext context, IRubyObject[] args) {
         this.response.write(args[0].asJavaString(), (args.length > 1) ? args[1].asJavaString() : "UTF-8");
         return this;
     }
 
-    @JRubyMethod(name="send_file", required=1, optional=1, rest=true)
+    @JRubyMethod(name="send_file", required=1, optional=1)
     public IRubyObject sendFile(ThreadContext context, IRubyObject[] args) {
         if (args.length > 1 && !args[1].isNil())
             this.response.sendFile(args[0].asJavaString(), args[1].asJavaString());
@@ -107,13 +107,13 @@ public class RubyHttpServerResponse extends RubyObject {
         return this;
     }
 
-    @JRubyMethod(name="end", optional=1, rest=true)
-    public IRubyObject end(ThreadContext context, IRubyObject[] args) {
-        if (args.length != 0) {
-            if (args[0] instanceof RubyString)
-                this.response.end(args[0].asJavaString());
-            else if (args[0] instanceof RubyBuffer)
-                this.response.end(((RubyBuffer)args[0]).getBuffer());
+    @JRubyMethod(name="end", optional=1)
+    public IRubyObject end(ThreadContext context, IRubyObject arg) {
+        if (!arg.isNil()) {
+            if (arg instanceof RubyString)
+                this.response.end(arg.asJavaString());
+            else if (arg instanceof RubyBuffer)
+                this.response.end(((RubyBuffer)arg).getBuffer());
             else
                 this.response.end();
         } else

@@ -68,9 +68,9 @@ public class RubyBuffer extends RubyObject {
         return buff;
     }
 
-    @JRubyMethod(name="to_s", optional=1, rest=true)
-    public IRubyObject toString(ThreadContext context, IRubyObject[] args) {
-        return getRuntime().newString(this.buffer.toString(args.length > 0 ? args[0].asJavaString() : "UTF-8"));
+    @JRubyMethod(name="to_s", optional=1)
+    public IRubyObject toString(ThreadContext context, IRubyObject arg) {
+        return getRuntime().newString(this.buffer.toString(arg.isNil() ? "UTF-8" : arg.asJavaString()));
     }
 
     @JRubyMethod(name="get_byte")
@@ -119,7 +119,7 @@ public class RubyBuffer extends RubyObject {
     }
 
 
-    @JRubyMethod(name="get_string", required=2, optional = 1, rest=true)
+    @JRubyMethod(name="get_string", required=2, optional = 1)
     public IRubyObject getString(ThreadContext context, IRubyObject[] args) {
         return context.runtime.newString(this.buffer.getString(RubyNumeric.num2int(args[0]), RubyNumeric.num2int(args[1]), args.length > 2 ? args[2].asJavaString() : "UTF-8"));
     }
@@ -177,7 +177,7 @@ public class RubyBuffer extends RubyObject {
         return this;
     }
 
-    @JRubyMethod(name="append_str", required=1, optional=1, rest=true)
+    @JRubyMethod(name="append_str", required=1, optional=1)
     public IRubyObject appendStr(ThreadContext context, IRubyObject[] args) {
         this.buffer.appendString(args[0].asJavaString(), args.length > 1 ? args[1].asJavaString() : "UTF-8");
         return this;
@@ -234,7 +234,7 @@ public class RubyBuffer extends RubyObject {
      * @param enc [String] the encoding
      * @return [Buffer] a reference to self so multiple operations can be appended together.
      */
-    @JRubyMethod(name="set_string", required=2, optional=1, rest=true)
+    @JRubyMethod(name="set_string", required=2, optional=1)
     public IRubyObject setString(ThreadContext context, IRubyObject[] args) {
         this.buffer.setString(RubyNumeric.num2int(args[0]), args[1].asJavaString(), args.length > 2 ? args[2].asJavaString() : "UTF-8");
         return this;

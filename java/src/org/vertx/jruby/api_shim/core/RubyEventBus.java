@@ -31,7 +31,7 @@ public class RubyEventBus {
         return klazz;
     }
 
-    @JRubyMethod(name="send", required=2, optional=1, module=true, rest=true)
+    @JRubyMethod(name="send", required=2, optional=1, module=true)
     public static IRubyObject send(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
         IRubyObject msg = args[1];
         String addr = args[0].asJavaString();
@@ -48,7 +48,7 @@ public class RubyEventBus {
         return context.runtime.getNil();
     }
 
-    @JRubyMethod(name="publish", required=2, module=true, rest=true)
+    @JRubyMethod(name="publish", required=2, module=true)
     public static IRubyObject publish(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
         IRubyObject msg = args[1];
         String addr = args[0].asJavaString();
@@ -64,7 +64,7 @@ public class RubyEventBus {
             throw context.runtime.newArgumentError("Unknown type of message " + msg.getType());
         return context.runtime.getNil();
     } 
-    @JRubyMethod(name="register_handler", required = 1, optional = 1, rest = true, module = true)
+    @JRubyMethod(name="register_handler", required = 1, optional = 1, module = true)
     public static IRubyObject registerHandler(final ThreadContext context, IRubyObject recv, IRubyObject[] args, final Block blk) {
         String id = UUID.randomUUID().toString();
         Handler<Message> handler = newMessageHandler(context, blk);

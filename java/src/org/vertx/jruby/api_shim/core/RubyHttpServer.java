@@ -46,7 +46,7 @@ public class RubyHttpServer extends RubyObject {
 
     // FIXME: route matcher not ready
     @JRubyMethod(name="request_handler", optional = 1)
-    public IRubyObject requestHandler(final ThreadContext context, IRubyObject[] args, final Block blk) {
+    public IRubyObject requestHandler(final ThreadContext context, IRubyObject arg, final Block blk) {
         final Ruby runtime = context.runtime;
         this.httpServer.requestHandler(new Handler<HttpServerRequest>() {
             @Override
@@ -87,7 +87,7 @@ public class RubyHttpServer extends RubyObject {
         return context.runtime.newBoolean(this.httpServer.isCompressionSupported());
     }
 
-    @JRubyMethod(required = 1, optional = 1, rest = true)
+    @JRubyMethod(required = 1, optional = 1)
     public IRubyObject listen(ThreadContext context, IRubyObject[] args, final Block blk) {
         String host = "0.0.0.0";
         if (args.length > 1)

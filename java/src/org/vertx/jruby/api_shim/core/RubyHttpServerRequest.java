@@ -48,6 +48,10 @@ public class RubyHttpServerRequest extends RubyObject {
         this.request = request;
     }
 
+    public HttpServerRequest httpServerRequest() {
+        return this.request;
+    }
+
     @JRubyMethod
     public IRubyObject version(ThreadContext context) {
         return context.runtime.newString(this.request.version().toString());
