@@ -15,7 +15,7 @@ import org.vertx.java.core.http.HttpServerResponse;
 public class RubyHttpServerResponse extends RubyObject {
     private HttpServerResponse response;
 
-    public static void createRubyHttpServerResponseClass(final Ruby runtime) {
+    public static void createHttpServerResponseClass(final Ruby runtime) {
         RubyModule vertxModule = runtime.defineModule("Vertx");
         RubyClass klazz = vertxModule.defineClassUnder("HttpServerResponse", runtime.getObject(), new ObjectAllocator() {
             @Override

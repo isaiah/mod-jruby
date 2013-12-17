@@ -55,14 +55,14 @@ public class RubyBuffer extends RubyObject {
     }
 
     @JRubyMethod(meta=true)
-    public IRubyObject create(ThreadContext context, IRubyObject recv, IRubyObject initialSizeHint) {
+    public static IRubyObject create(ThreadContext context, IRubyObject recv, IRubyObject initialSizeHint) {
         RubyBuffer buff = (RubyBuffer) ((RubyClass) recv).allocate();
         buff.buffer = new Buffer(RubyNumeric.num2int(initialSizeHint));
         return buff;
     }
 
     @JRubyMethod(name="create_from_str", required=1, optional=1, meta=true)
-    public IRubyObject createFromStr(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
+    public static IRubyObject createFromStr(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
         RubyBuffer buff = (RubyBuffer) ((RubyClass) recv).allocate();
         buff.buffer = new Buffer(args[0].asJavaString(), args.length > 1 ? args[1].asJavaString() : "UTF-8");
         return buff;

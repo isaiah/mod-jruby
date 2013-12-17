@@ -25,7 +25,7 @@ import org.vertx.java.core.http.HttpServerResponse;
 public class RubyHttpServerRequest extends RubyObject {
     private HttpServerRequest request;
 
-    public static void createRubyHttpServerRequestClass(final Ruby runtime) {
+    public static void createHttpServerRequestClass(final Ruby runtime) {
         RubyModule vertxModule = runtime.defineModule("Vertx");
         RubyClass hsr = vertxModule.defineClassUnder("HttpServerRequest", runtime.getObject(), new ObjectAllocator() {
             @Override

@@ -19,7 +19,7 @@ public class RubyHttpServer extends RubyObject {
     private HttpServer httpServer;
     private boolean compress;
 
-    public static void createRubyHttpServerClass(final Ruby runtime) {
+    public static void createHttpServerClass(final Ruby runtime) {
         RubyModule vertxModule = runtime.defineModule("Vertx");
         RubyClass httpServerClass = vertxModule.defineClassUnder("HttpServer", runtime.getObject(), new ObjectAllocator() {
             @Override

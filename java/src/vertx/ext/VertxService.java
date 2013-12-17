@@ -2,7 +2,7 @@ package vertx.ext;
 
 import org.jruby.Ruby;
 import org.jruby.runtime.load.BasicLibraryService;
-import org.vertx.jruby.api_shim.core.RubyBuffer;
+import org.vertx.jruby.api_shim.core.*;
 
 import java.io.IOException;
 
@@ -16,6 +16,13 @@ import java.io.IOException;
 public class VertxService implements BasicLibraryService {
     public boolean basicLoad(final Ruby runtime) throws IOException {
         RubyBuffer.createBufferClass(runtime);
+//        RubyEventBus.createEventBusModule(runtime);
+        RubyHttpServer.createHttpServerClass(runtime);
+        RubyHttpServerRequest.createHttpServerRequestClass(runtime);
+        RubyHttpServerResponse.createHttpServerResponseClass(runtime);
+        RubyMessage.createMessageClass(runtime);
+        RubyWebSocket.createWebSocketClass(runtime);
+        RubyHttpServerFileUpload.createHttpServerFileUploadClass(runtime);
 
         return true;
     }
