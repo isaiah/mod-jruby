@@ -86,7 +86,7 @@ public class RubyHttpServerRequest extends RubyObject {
     @JRubyMethod
     public IRubyObject response(ThreadContext context) {
         RubyModule vertxModule = context.runtime.getModule("Vertx");
-        RubyClass rubyHttpServerResponseClass = (RubyClass) vertxModule.getClass("RubyHttpServerResponse");
+        RubyClass rubyHttpServerResponseClass = (RubyClass) vertxModule.getClass("HttpServerResponse");
         RubyHttpServerResponse resp = (RubyHttpServerResponse) rubyHttpServerResponseClass.allocate();
         resp.setResponse(this.request.response());
         return resp;

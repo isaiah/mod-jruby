@@ -34,13 +34,16 @@ public class RubyHttpServer extends RubyObject {
         super(ruby, klazz);
     }
 
-    @JRubyMethod
-    public IRubyObject initialize(ThreadContext context, IRubyObject conf) {
-        RubyHash options = conf.convertToHash();
-        RubySymbol compressSym = context.runtime.newSymbol("compress");
+    @JRubyMethod(optional=1)
+    public IRubyObject initialize(ThreadContext context, IRubyObject[] args) {
+        if (args.length > 0){
+            RubyHash options = args[0].convertToHash();
+            RubySymbol compressSym = context.runtime.newSymbol("compress");
+            if (options.has_key_p(compressSym).isTrue())
+                this.compress = options.op_aref(context, compressSym).isTrue();
+        }
         this.httpServer = JRubyVerticleFactory.vertx.createHttpServer();
-        if (options.has_key_p(compressSym).isTrue())
-            this.compress = options.op_aref(context, compressSym).isTrue();
+
         return this;
     }
 
@@ -51,8 +54,7 @@ public class RubyHttpServer extends RubyObject {
         this.httpServer.requestHandler(new Handler<HttpServerRequest>() {
             @Override
             public void handle(HttpServerRequest httpServerRequest) {
-                RubyModule vertxModule = runtime.getModule("Vertx");
-                RubyClass rubyHttpServerRequestClass = (RubyClass) vertxModule.getClass("RubyHttpServerRequest");
+                RubyClass rubyHttpServerRequestClass = (RubyClass) runtime.getClassFromPath("Vertx::HttpServerRequest");
                 RubyHttpServerRequest request = (RubyHttpServerRequest) rubyHttpServerRequestClass.allocate();
                 request.setHttpServerRequest(httpServerRequest);
                 blk.call(context, request);
@@ -67,7 +69,7 @@ public class RubyHttpServer extends RubyObject {
             @Override
             public void handle(ServerWebSocket serverWebSocket) {
                 RubyModule vertxModule = context.runtime.getModule("Vertx");
-                RubyClass rubyServerWebsocketClass = vertxModule.getClass("RubyServerWebsocket");
+                RubyClass rubyServerWebsocketClass = vertxModule.getClass("ServerWebsocket");
                 RubyServerWebsocket websocket = (RubyServerWebsocket) rubyServerWebsocketClass.allocate();
                 websocket.setServerWebsocket(serverWebSocket);
                 blk.call(context, websocket);
