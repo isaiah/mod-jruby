@@ -16,7 +16,7 @@ import java.io.IOException;
 public class VertxService implements BasicLibraryService {
     public boolean basicLoad(final Ruby runtime) throws IOException {
         RubyBuffer.createBufferClass(runtime);
-//        RubyEventBus.createEventBusModule(runtime);
+        RubyEventBus.createEventBusModule(runtime);
         RubyHttpServer.createHttpServerClass(runtime);
         RubyHttpServerRequest.createHttpServerRequestClass(runtime);
         RubyHttpServerResponse.createHttpServerResponseClass(runtime);

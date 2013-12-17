@@ -25,7 +25,7 @@ public class RubyEventBus {
     private static EventBus eb = JRubyVerticleFactory.vertx.eventBus();
 
     public static RubyModule createEventBusModule(final Ruby runtime) {
-        RubyModule vertxModule = runtime.defineModule("Vertx");
+        RubyModule vertxModule = runtime.getOrCreateModule("Vertx");
         RubyModule klazz = vertxModule.defineModuleUnder("EventBus");
         klazz.defineAnnotatedMethods(RubyEventBus.class);
         return klazz;
@@ -48,10 +48,9 @@ public class RubyEventBus {
         return context.runtime.getNil();
     }
 
-    @JRubyMethod(name="publish", required=2, module=true)
-    public static IRubyObject publish(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
-        IRubyObject msg = args[1];
-        String addr = args[0].asJavaString();
+    @JRubyMethod(name="publish", module=true)
+    public static IRubyObject publish(ThreadContext context, IRubyObject self, IRubyObject address, IRubyObject msg) {
+        String addr = address.asJavaString();
         if (msg instanceof RubyHash) {
             //TODO
         } else if (msg instanceof RubyBuffer) {
@@ -63,7 +62,8 @@ public class RubyEventBus {
         } else
             throw context.runtime.newArgumentError("Unknown type of message " + msg.getType());
         return context.runtime.getNil();
-    } 
+    }
+
     @JRubyMethod(name="register_handler", required = 1, optional = 1, module = true)
     public static IRubyObject registerHandler(final ThreadContext context, IRubyObject recv, IRubyObject[] args, final Block blk) {
         String id = UUID.randomUUID().toString();
@@ -83,7 +83,7 @@ public class RubyEventBus {
         if (handler != null)
             eb.unregisterHandler(handlerId.asJavaString(), handler);
         return context.runtime.getNil();
-    }
+     }
 
     private static Handler<Message> newMessageHandler(final ThreadContext context, final Block blk) {
         return new Handler<Message>() {
