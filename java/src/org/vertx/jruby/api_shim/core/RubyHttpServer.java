@@ -34,6 +34,10 @@ public class RubyHttpServer extends RubyObject {
         super(ruby, klazz);
     }
 
+    public HttpServer httpServer() {
+        return this.httpServer;
+    }
+
     @JRubyMethod(optional=1)
     public IRubyObject initialize(ThreadContext context, IRubyObject[] args) {
         if (args.length > 0)
