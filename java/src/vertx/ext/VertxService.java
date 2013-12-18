@@ -23,6 +23,9 @@ public class VertxService implements BasicLibraryService {
         RubyMessage.createMessageClass(runtime);
         RubyWebSocket.createWebSocketClass(runtime);
         RubyHttpServerFileUpload.createHttpServerFileUploadClass(runtime);
+        RubyHttpClient.createHttpClientClass(runtime);
+        RubyHttpClientRequest.createHttpClientRequest(runtime);
+        RubyHttpClientResponse.createHttpClientResponse(runtime);
 
         return true;
     }

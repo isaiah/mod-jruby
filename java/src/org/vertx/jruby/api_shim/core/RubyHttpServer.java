@@ -36,14 +36,9 @@ public class RubyHttpServer extends RubyObject {
 
     @JRubyMethod(optional=1)
     public IRubyObject initialize(ThreadContext context, IRubyObject[] args) {
-        if (args.length > 0){
-            RubyHash options = args[0].convertToHash();
-            RubySymbol compressSym = context.runtime.newSymbol("compress");
-            if (options.has_key_p(compressSym).isTrue())
-                this.compress = options.op_aref(context, compressSym).isTrue();
-        }
+        if (args.length > 0)
+                this.compress = JRubyUtils.getBooleanFromRubyHash(context, args[0], "compress");
         this.httpServer = JRubyVerticleFactory.vertx.createHttpServer();
-
         return this;
     }
 
@@ -68,8 +63,7 @@ public class RubyHttpServer extends RubyObject {
         this.httpServer.websocketHandler(new Handler<ServerWebSocket>() {
             @Override
             public void handle(ServerWebSocket serverWebSocket) {
-                RubyModule vertxModule = context.runtime.getModule("Vertx");
-                RubyClass rubyServerWebsocketClass = vertxModule.getClass("ServerWebsocket");
+                RubyClass rubyServerWebsocketClass = (RubyClass) context.runtime.getClassFromPath("Vertx::ServerWebsocket");
                 RubyServerWebsocket websocket = (RubyServerWebsocket) rubyServerWebsocketClass.allocate();
                 websocket.setServerWebsocket(serverWebSocket);
                 blk.call(context, websocket);

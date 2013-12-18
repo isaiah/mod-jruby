@@ -143,11 +143,7 @@ public class RubyHttpServerRequest extends RubyObject {
         this.request.bodyHandler(new Handler<Buffer>() {
             @Override
             public void handle(Buffer buffer) {
-                RubyModule vertxModule = context.runtime.getModule("Vertx");
-                RubyClass rubyBufferClass = (RubyClass) vertxModule.getClass("Buffer");
-                RubyBuffer rubyBuffer = (RubyBuffer) rubyBufferClass.allocate();
-                rubyBuffer.setBuffer(buffer);
-                blk.call(context, rubyBuffer);
+                blk.call(context, JRubyUtils.newBuffer(context.runtime, buffer));
             }
         });
         return this;

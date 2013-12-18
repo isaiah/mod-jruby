@@ -7,12 +7,15 @@ import org.jruby.RubyObject;
 import org.jruby.anno.JRubyClass;
 import org.jruby.runtime.ObjectAllocator;
 import org.jruby.runtime.builtin.IRubyObject;
+import org.vertx.java.core.http.WebSocket;
 
 /**
  * Created by isaiah on 12/15/13.
  */
 @JRubyClass(name="WebSocket")
 public class RubyWebSocket extends RubyObject {
+    private WebSocket sock;
+
     public static void createWebSocketClass(final Ruby runtime) {
         RubyModule vertxModule = runtime.defineModule("Vertx");
         RubyClass klazz = vertxModule.defineClassUnder("WebSocket", runtime.getObject(), new ObjectAllocator() {
@@ -26,5 +29,9 @@ public class RubyWebSocket extends RubyObject {
 
     public RubyWebSocket(Ruby ruby, RubyClass klazz) {
         super(ruby, klazz);
+    }
+
+    public void setWebSocket(WebSocket webSocket) {
+        this.sock = webSocket;
     }
 }

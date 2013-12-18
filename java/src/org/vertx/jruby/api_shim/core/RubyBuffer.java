@@ -69,8 +69,8 @@ public class RubyBuffer extends RubyObject {
     }
 
     @JRubyMethod(name="to_s", optional=1)
-    public IRubyObject toString(ThreadContext context, IRubyObject arg) {
-        return getRuntime().newString(this.buffer.toString(arg.isNil() ? "UTF-8" : arg.asJavaString()));
+    public IRubyObject toString(ThreadContext context, IRubyObject[] args) {
+        return getRuntime().newString(this.buffer.toString(args.length == 0 ? "UTF-8" : args[0].asJavaString()));
     }
 
     @JRubyMethod(name="get_byte")
