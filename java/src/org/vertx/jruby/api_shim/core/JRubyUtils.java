@@ -1,10 +1,16 @@
 package org.vertx.jruby.api_shim.core;
 
 import org.jruby.*;
+import org.jruby.runtime.Block;
 import org.jruby.runtime.ThreadContext;
 import org.jruby.runtime.builtin.IRubyObject;
+import org.jruby.util.Join;
+import org.vertx.java.core.AsyncResult;
+import org.vertx.java.core.AsyncResultHandler;
+import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.http.*;
+import org.vertx.java.core.net.NetSocket;
 
 /**
  * Created by isaiah on 17/12/2013.
@@ -43,6 +49,13 @@ public class JRubyUtils {
         RubyBuffer rubyBuffer = (RubyBuffer) rubyBufferClass.allocate();
         rubyBuffer.setBuffer(buffer);
         return rubyBuffer;
+    }
+
+    public static RubyNetSocket newNetSocket(Ruby runtime, NetSocket socket) {
+        RubyClass rubyBufferClass = (RubyClass) runtime.getClassFromPath("Vertx::NetSocket");
+        RubyNetSocket sock = (RubyNetSocket) rubyBufferClass.allocate();
+        sock.setNetSocket(socket);
+        return sock;
     }
 
     public static boolean getBooleanFromRubyHash(ThreadContext context, IRubyObject hash, String key) {
