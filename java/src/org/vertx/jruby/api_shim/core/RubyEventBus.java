@@ -21,7 +21,7 @@ import java.util.UUID;
  */
 @JRubyModule(name="EventBus")
 public class RubyEventBus {
-    private static Map<String, Handler<Message>> handlerMap = new HashMap<>();
+    private static Map<String, Handler<? extends Message>> handlerMap = new HashMap<>();
     private static EventBus eb = JRubyVerticleFactory.vertx.eventBus();
 
     public static RubyModule createEventBusModule(final Ruby runtime) {
@@ -79,11 +79,30 @@ public class RubyEventBus {
     @JRubyMethod(name="unregister_handler", module = true)
     public static IRubyObject unregisterHandler(ThreadContext context, IRubyObject recv, IRubyObject handlerId) {
         // Fail silently
-        Handler<Message> handler = handlerMap.remove(handlerId.asJavaString());
+        Handler<? extends Message> handler = handlerMap.remove(handlerId.asJavaString());
         if (handler != null)
             eb.unregisterHandler(handlerId.asJavaString(), handler);
         return context.runtime.getNil();
      }
+    public static String registerSimpleHandler(Handler<? extends Message> handler) {
+        return registerSimpleHandler(false, handler);
+    }
+
+    public static String registerSimpleHandler(boolean local, Handler<? extends Message> handler) {
+        String id = UUID.randomUUID().toString();
+        if (local)
+            eb.registerLocalHandler(id, handler);
+        else
+            eb.registerHandler(id, handler);
+
+        handlerMap.put(id, handler);
+        return id;
+    }
+
+    public static String unregisterHandler(String id) {
+        handlerMap.remove(id);
+        return id;
+    }
 
     private static Handler<Message> newMessageHandler(final ThreadContext context, final Block blk) {
         return new Handler<Message>() {
