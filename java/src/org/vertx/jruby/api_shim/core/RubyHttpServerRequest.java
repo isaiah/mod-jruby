@@ -25,14 +25,16 @@ import org.vertx.java.core.http.HttpServerResponse;
 public class RubyHttpServerRequest extends RubyObject {
     private HttpServerRequest request;
 
-    public static void createHttpServerRequestClass(final Ruby runtime) {
+    public static RubyClass createHttpServerRequestClass(final Ruby runtime) {
         RubyModule vertxModule = runtime.defineModule("Vertx");
-        RubyClass hsr = vertxModule.defineClassUnder("HttpServerRequest", runtime.getObject(), new ObjectAllocator() {
+        RubyClass klazz = vertxModule.defineClassUnder("HttpServerRequest", runtime.getObject(), new ObjectAllocator() {
             @Override
             public IRubyObject allocate(Ruby ruby, RubyClass rubyClass) {
                 return new RubyHttpServerRequest(ruby, rubyClass);
             }
         });
+        klazz.defineAnnotatedMethods(RubyHttpServerRequest.class);
+        return klazz;
     }
 
     public RubyHttpServerRequest(Ruby ruby, RubyClass klazz) {

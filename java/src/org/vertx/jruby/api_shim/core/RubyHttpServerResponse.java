@@ -108,12 +108,12 @@ public class RubyHttpServerResponse extends RubyObject {
     }
 
     @JRubyMethod(name="end", optional=1)
-    public IRubyObject end(ThreadContext context, IRubyObject arg) {
-        if (!arg.isNil()) {
-            if (arg instanceof RubyString)
-                this.response.end(arg.asJavaString());
-            else if (arg instanceof RubyBuffer)
-                this.response.end(((RubyBuffer)arg).getBuffer());
+    public IRubyObject end(ThreadContext context, IRubyObject[] args) {
+        if (args.length != 0) {
+            if (args[0] instanceof RubyString)
+                this.response.end(args[0].asJavaString());
+            else if (args[0] instanceof RubyBuffer)
+                this.response.end(((RubyBuffer)args[0]).getBuffer());
             else
                 this.response.end();
         } else
