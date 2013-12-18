@@ -1,3 +1,5 @@
 pkg/*
 *.iml
 .idea/*
+build/
+.gradle/
