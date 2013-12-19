@@ -6,16 +6,18 @@ import org.jruby.runtime.Block;
 import org.jruby.runtime.ObjectAllocator;
 import org.jruby.runtime.ThreadContext;
 import org.jruby.runtime.builtin.IRubyObject;
+import org.omg.CosNaming._NamingContextExtStub;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
 import org.vertx.java.core.http.ServerWebSocket;
 import org.vertx.java.platform.impl.JRubyVerticleFactory;
+import org.vertx.jruby.api_shim.RubySSLSupport;
 
 /**
  * Created by isaiah on 12/14/13.
  */
-public class RubyHttpServer extends RubyObject {
+public class RubyHttpServer extends RubyObject implements RubySSLSupport<RubyHttpServer> {
     private HttpServer httpServer;
     private boolean compress;
 
@@ -115,5 +117,81 @@ public class RubyHttpServer extends RubyObject {
     @JRubyMethod(name="max_websocket_frame_size")
     public IRubyObject getMaxWebsocketMaxFrameSize(ThreadContext context) {
         return context.runtime.newFixnum(this.httpServer.getMaxWebSocketFrameSize());
+    }
+
+    @JRubyMethod(name = "ssl=")
+    @Override
+    public RubyHttpServer setSSL(ThreadContext context, IRubyObject ssl) {
+        this.httpServer.setSSL(ssl.isTrue());
+        return this;
+    }
+
+    @JRubyMethod(name = "ssl?")
+    @Override
+    public IRubyObject isSSL(ThreadContext context) {
+        return context.runtime.newBoolean(this.httpServer.isSSL());
+    }
+
+    @JRubyMethod(name =  "kes_store_path=")
+    @Override
+    public RubyHttpServer setKeyStorePath(ThreadContext context, IRubyObject path) {
+        this.httpServer.setKeyStorePath(path.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "key_store_path")
+    @Override
+    public IRubyObject keyStorePath(ThreadContext context) {
+        return context.runtime.newString(this.httpServer.getKeyStorePath());
+    }
+
+    @JRubyMethod(name = "key_store_password=")
+    @Override
+    public RubyHttpServer setKeyStorePassword(ThreadContext context, IRubyObject password) {
+        this.httpServer.setKeyStorePassword(password.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "key_store_password")
+    @Override
+    public IRubyObject keyStorePassword(ThreadContext context) {
+        return context.runtime.newString(this.httpServer.getKeyStorePassword());
+    }
+
+    @JRubyMethod(name = "trust_store_path=")
+    @Override
+    public RubyHttpServer setTrustStorePath(ThreadContext context, IRubyObject path) {
+        this.httpServer.setTrustStorePath(path.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "trust_store_path")
+    @Override
+    public IRubyObject trustStorePath(ThreadContext context) {
+        return context.runtime.newString(this.httpServer.getTrustStorePath());
+    }
+
+    @JRubyMethod(name = "trust_store_password=")
+    @Override
+    public RubyHttpServer setTrustStorePassword(ThreadContext context, IRubyObject password) {
+        this.httpServer.setKeyStorePassword(password.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "trust_store_password")
+    @Override
+    public IRubyObject trustStorePassword(ThreadContext context) {
+        return context.runtime.newString(this.httpServer.getTrustStorePassword());
+    }
+
+    @JRubyMethod(name = "client_auth_required=")
+    public IRubyObject setClientAuthRequired(ThreadContext context, IRubyObject val) {
+        this.httpServer.setClientAuthRequired(val.isTrue());
+        return this;
+    }
+
+    @JRubyMethod(name = "client_auth_required?")
+    public IRubyObject clientAuthRequired(ThreadContext context) {
+        return context.runtime.newBoolean(this.httpServer.isClientAuthRequired());
     }
 }

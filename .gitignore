@@ -3,3 +3,4 @@ pkg/*
 .idea/*
 build/
 .gradle/
+src/test/mod-test/

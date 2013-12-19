@@ -5,12 +5,17 @@ import org.jruby.runtime.Block;
 import org.jruby.runtime.ThreadContext;
 import org.jruby.runtime.builtin.IRubyObject;
 import org.jruby.util.Join;
+import org.jruby.util.TypeConverter;
 import org.vertx.java.core.AsyncResult;
 import org.vertx.java.core.AsyncResultHandler;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.http.*;
+import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.net.NetSocket;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by isaiah on 17/12/2013.

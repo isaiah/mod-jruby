@@ -11,11 +11,12 @@ import org.vertx.java.core.AsyncResultHandler;
 import org.vertx.java.core.net.NetClient;
 import org.vertx.java.core.net.NetSocket;
 import org.vertx.java.platform.impl.JRubyVerticleFactory;
+import org.vertx.jruby.api_shim.RubySSLSupport;
 
 /**
  * Created by isaiah on 18/12/2013.
  */
-public class RubyNetClient extends RubyObject {
+public class RubyNetClient extends RubyObject implements RubySSLSupport<RubyNetClient> {
     private NetClient netClient;
 
     public static RubyClass createNetClientClass(final Ruby runtime) {
@@ -106,4 +107,79 @@ public class RubyNetClient extends RubyObject {
         return context.runtime.getNil();
     }
 
+    @JRubyMethod(name = "ssl=")
+    @Override
+    public RubyNetClient setSSL(ThreadContext context, IRubyObject ssl) {
+        this.netClient.setSSL(ssl.isTrue());
+        return this;
+    }
+
+    @JRubyMethod(name = "ssl?")
+    @Override
+    public IRubyObject isSSL(ThreadContext context) {
+        return context.runtime.newBoolean(this.netClient.isSSL());
+    }
+
+    @JRubyMethod(name =  "kes_store_path=")
+    @Override
+    public RubyNetClient setKeyStorePath(ThreadContext context, IRubyObject path) {
+        this.netClient.setKeyStorePath(path.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "key_store_path")
+    @Override
+    public IRubyObject keyStorePath(ThreadContext context) {
+        return context.runtime.newString(this.netClient.getKeyStorePath());
+    }
+
+    @JRubyMethod(name = "key_store_password=")
+    @Override
+    public RubyNetClient setKeyStorePassword(ThreadContext context, IRubyObject password) {
+        this.netClient.setKeyStorePassword(password.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "key_store_password")
+    @Override
+    public IRubyObject keyStorePassword(ThreadContext context) {
+        return context.runtime.newString(this.netClient.getKeyStorePassword());
+    }
+
+    @JRubyMethod(name = "trust_store_path=")
+    @Override
+    public RubyNetClient setTrustStorePath(ThreadContext context, IRubyObject path) {
+        this.netClient.setTrustStorePath(path.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "trust_store_path")
+    @Override
+    public IRubyObject trustStorePath(ThreadContext context) {
+        return context.runtime.newString(this.netClient.getTrustStorePath());
+    }
+
+    @JRubyMethod(name = "trust_store_password=")
+    @Override
+    public RubyNetClient setTrustStorePassword(ThreadContext context, IRubyObject password) {
+        this.netClient.setKeyStorePassword(password.asJavaString());
+        return this;
+    }
+
+    @JRubyMethod(name = "trust_store_password")
+    @Override
+    public IRubyObject trustStorePassword(ThreadContext context) {
+        return context.runtime.newString(this.netClient.getTrustStorePassword());
+    }
+
+    @JRubyMethod(name = "trust_all=")
+    public IRubyObject setTrustAll(ThreadContext context, IRubyObject val) {
+        this.netClient.setTrustAll(val.isTrue());
+        return this;
+    }
+
+    @JRubyMethod(name = "trust_all?")
+    public IRubyObject isTrustAll(ThreadContext context) {
+        return context.runtime.newBoolean(this.netClient.isTrustAll());
+    }
 }
