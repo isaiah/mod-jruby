@@ -7,6 +7,8 @@ import org.jruby.runtime.ObjectAllocator;
 import org.jruby.runtime.ThreadContext;
 import org.jruby.runtime.builtin.IRubyObject;
 import org.omg.CosNaming._NamingContextExtStub;
+import org.vertx.java.core.AsyncResult;
+import org.vertx.java.core.AsyncResultHandler;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
@@ -34,6 +36,11 @@ public class RubyHttpServer extends RubyObject implements RubySSLSupport<RubyHtt
 
     public RubyHttpServer(Ruby ruby, RubyClass klazz) {
         super(ruby, klazz);
+    }
+
+    public RubyHttpServer(Ruby ruby, RubyClass rubyClass, HttpServer httpServer) {
+        super(ruby, rubyClass);
+        this.httpServer = httpServer;
     }
 
     public HttpServer httpServer() {
@@ -90,21 +97,44 @@ public class RubyHttpServer extends RubyObject implements RubySSLSupport<RubyHtt
     }
 
     @JRubyMethod(required = 1, optional = 1)
-    public IRubyObject listen(ThreadContext context, IRubyObject[] args, final Block blk) {
+    public IRubyObject listen(final ThreadContext context, IRubyObject[] args, final Block blk) {
+        final Ruby runtime = context.runtime;
         String host = "0.0.0.0";
         if (args.length > 1)
             host = args[1].asJavaString();
         if (blk.isGiven())
             // FIXME: ARWrapperHandler
-            this.httpServer.listen(RubyNumeric.num2int(args[0]), host);
+            this.httpServer.listen(RubyNumeric.num2int(args[0]), host, new Handler<AsyncResult<HttpServer>>() {
+                @Override
+                public void handle(AsyncResult<HttpServer> httpServerAsyncResult) {
+                    if (httpServerAsyncResult.succeeded()) {
+                        RubyClass rubyHttpServerClass = (RubyClass) runtime.getClassFromPath("Vertx::HttpServer");
+                        blk.call(context, runtime.getNil(), new RubyHttpServer(runtime, rubyHttpServerClass, httpServerAsyncResult.result()));
+                    } else {
+                        blk.call(context, new NativeException(runtime, runtime.getNativeException(), httpServerAsyncResult.cause()));
+                    }
+                }
+            });
         else
             this.httpServer.listen(RubyNumeric.num2int(args[0]), host);
         return this;
     }
     @JRubyMethod
-    public IRubyObject close(ThreadContext context, Block blk) {
-        // FIXME: ARWrapperHandler
-        this.httpServer.close();
+    public IRubyObject close(final ThreadContext context, final Block blk) {
+        final Ruby runtime = context.runtime;
+        if (blk.isGiven()) {
+            this.httpServer.close(new Handler<AsyncResult<Void>>() {
+                @Override
+                public void handle(AsyncResult<Void> voidAsyncResult) {
+                    if (voidAsyncResult.succeeded())
+                        blk.call(context);
+                    else
+                        blk.call(context);
+                }
+            });
+        } else {
+            this.httpServer.close();
+        }
         return context.runtime.getNil();
     }
 
@@ -132,7 +162,7 @@ public class RubyHttpServer extends RubyObject implements RubySSLSupport<RubyHtt
         return context.runtime.newBoolean(this.httpServer.isSSL());
     }
 
-    @JRubyMethod(name =  "kes_store_path=")
+    @JRubyMethod(name =  "key_store_path=")
     @Override
     public RubyHttpServer setKeyStorePath(ThreadContext context, IRubyObject path) {
         this.httpServer.setKeyStorePath(path.asJavaString());
